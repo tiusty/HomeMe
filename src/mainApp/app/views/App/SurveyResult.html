@@ -43,18 +43,27 @@
               <thead>
                 <tr>
                   <th>Destination Entered</th>
-                </tr>
+		   <th>Origin</th>
+		   <th>Destination</th>
+		   <th>Time to Destination</th>
+		   <th>Distance between locations</th>
+		</tr>
               </thead>
               <tbody>
                 <tr>
                   <td>{{.inputDest}}</td>
+		  <td id="distanceMatrixOrigin"></td>
+		  <td id="distanceMatrixDestination"></td>
+		  <td id="distanceMatrixTimeToDestination"></td>
+		  <td id="distanceMatrixDistanceToDestination"></td>
                 </tr>
-               </tbody>
+	       </tbody>
             </table>
           </div>
 </div>
 </div>
 </div>
+<script src="/public/js/googleMapsDistanceMatrix.js"></script>
 <script src="/public/js/addGoogleMap.js"></script>
    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDocEM2aNmd47atCkIpw2zXOBShUhF3PwE &callback=initMap"></script>
 
