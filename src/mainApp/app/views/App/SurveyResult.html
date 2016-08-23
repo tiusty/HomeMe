@@ -65,8 +65,14 @@
 </div>
 </div>
 </div>
+<script>
+var myStreetAddress = "{{.streetAddress}}, {{.zip}}";
+</script>
 <script src="/public/js/googleMapsDistanceMatrix.js"></script>
 <script src="/public/js/addGoogleMap.js"></script>
+<script> 
+//	$(document).ready(distanceMatrix('Stockholm, Sweeden'));
+</script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDocEM2aNmd47atCkIpw2zXOBShUhF3PwE &callback=initMap"></script>
 
 {{template "footer.html" .}}
