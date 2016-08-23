@@ -30,14 +30,13 @@ func (c App) Survey() revel.Result{
 	return c.Render()
 }
 
-func (c App) SurveyResult(inputDest string) revel.Result {
-	c.Validation.Required(inputDest).Message("You need a destination!")
-	c.Validation.MinSize(inputDest, 5).Message("Destination is too short")
-	
+func (c App) SurveyResult(streetAddress, zip string) revel.Result {
+	c.Validation.Required(streetAddress).Message("You need a destination!")
+	c.Validation.Required(zip).Message("You need a Zip Code")	
 	if c.Validation.HasErrors() {
 		c.Validation.Keep()
 		c.FlashParams()
 		return c.Redirect(App.Survey)
 	}	
-	return c.Render(inputDest)
+	return c.Render(streetAddress, zip)
 }

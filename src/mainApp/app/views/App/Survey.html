@@ -1,6 +1,20 @@
 {{set . "title" "Survey"}}
 {{template "header.html" .}}
-
+<script type="text/javascript" src="//d79i1fxsrar4t.cloudfront.net/jquery.liveaddress/3.1/jquery.liveaddress.min.js"></script>
+<script src="//d79i1fxsrar4t.cloudfront.net/jquery.liveaddress/3.1/jquery.liveaddress.min.js"></script>
+<script>jQuery.LiveAddress({
+		key: "28808046685198487", 
+		debug: false,
+		autocomplete: 5,
+		autoVerify: false,
+		target: "US",
+		addresses: [{
+			address1: '#streetAddress',
+			locality: '#city',
+			postal_code: '#zip'
+		}]
+	});
+</script>
 <link href="/public/css/bootstrap.min.css" rel="stylesheet">
 <link href="/public/bootstrapTest/starter-template.css" rel="stylesheet">
     <div class="container">
@@ -26,9 +40,17 @@
       <form class="form-horizontal" action="/App/SurveyResult" method="POST">
 	<div class="form-group">
 	  <div class="col-sm-offset-3 col-sm-6">
-	  <label for="inputDest">Destination</label>
-	    {{with $field := field "inputDest" .}}
-	  <input type="text" id="Address" class="form-control" name={{$field.Name}} placeholder="Enter Destination address">
+	  <label for="street-address">Destination</label>
+	    {{with $field := field "streetAddress" .}}
+	  <input type="text" id="{{$field.Name}}" name="{{$field.Name}}" class="form-control" placeholder="Enter Destination address">
+	    {{end}}
+           <label for="city">City</label>
+	  {{with $field := field "city" .}}
+	   <input type="text" id="{{$field.Name}}" name="{{$field.Name}}" class="form-control" placeholder="Enter the city">
+	   {{end}}
+	  <label for="postal_code">Postal Code</label>
+	    {{with $field := field "zip" .}}
+	  <input type="text" id="zip" name="{{$field.Name}}" class="form-control" placeholder="Enter your postal code">
 	    {{end}}
 	  </div>
 	</div>
@@ -49,5 +71,4 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="/public/js/bootstrap.min.js"></script>
 </body>
-<script src="/public/js/Survey.js"></script>
 {{template "footer.html" .}}

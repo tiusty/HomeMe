@@ -37,8 +37,8 @@ $(document).ready(function () {
 		//Execute the FormSubmit funciton when the form is submitted
 		$('form').submit(FormSubmit);
 
-
-}
+	}
+});
 	
 
 //Create a jQuery exists method
@@ -102,6 +102,9 @@ function AddressValidator(value,element,paras) {
 			/*Google Maps was able to geocode the address, but it wasn't specific enough (not enough commas) to be a valid street adress */
 			$(element).data("IsValid", false);
 		}
+	} else {
+		$(element).data("IsValid", false);
+	} 
 
 		//We're no longer in the midst of validating
 		$(element).data("IsChecking", false);

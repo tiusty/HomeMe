@@ -43,6 +43,7 @@
               <thead>
                 <tr>
                   <th>Destination Entered</th>
+		   <th>Zip Code entered</th>
 		   <th>Origin</th>
 		   <th>Destination</th>
 		   <th>Time to Destination</th>
@@ -51,7 +52,8 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>{{.inputDest}}</td>
+                  <td>{{.streetAddress}}</td>
+		  <td>{{.zip}}</td>
 		  <td id="distanceMatrixOrigin"></td>
 		  <td id="distanceMatrixDestination"></td>
 		  <td id="distanceMatrixTimeToDestination"></td>
@@ -65,7 +67,6 @@
 </div>
 <script src="/public/js/googleMapsDistanceMatrix.js"></script>
 <script src="/public/js/addGoogleMap.js"></script>
-   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDocEM2aNmd47atCkIpw2zXOBShUhF3PwE &callback=initMap"></script>
-
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDocEM2aNmd47atCkIpw2zXOBShUhF3PwE &callback=initMap"></script>
 
 {{template "footer.html" .}}
