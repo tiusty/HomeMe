@@ -30,7 +30,7 @@ func (c App) Survey() revel.Result{
 	return c.Render()
 }
 
-func (c App) SurveyResult(streetAddress, zip string) revel.Result {
+func (c App) SurveyResult(streetAddress, zip, state, city string) revel.Result {
 	c.Validation.Required(streetAddress).Message("You need a destination!")
 	c.Validation.Required(zip).Message("You need a Zip Code")	
 	if c.Validation.HasErrors() {
@@ -38,5 +38,5 @@ func (c App) SurveyResult(streetAddress, zip string) revel.Result {
 		c.FlashParams()
 		return c.Redirect(App.Survey)
 	}	
-	return c.Render(streetAddress, zip)
+	return c.Render(streetAddress, zip, state, city)
 }

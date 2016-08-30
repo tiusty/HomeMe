@@ -1,7 +1,9 @@
 function distanceMatrix() {
 
-var origin = 'Greenwich, England';
-var destination = 'Stockholm, Sweeden';
+//var origin = 'Greenwich, England';
+//var origin = '12 Stony Brook Rd,Arlington MA, USA';
+var origin = myStreetAddress;
+var destination = 'Boston, MA';
 
 var service = new google.maps.DistanceMatrixService();
 service.getDistanceMatrix(
@@ -19,6 +21,7 @@ service.getDistanceMatrix(
 
 		for(var i=0; i < origins.length; i++)
 			var results = response.rows[i].elements;
+			console.log(results);
 			for(var j=0; j < results.length; j++) {
 				var element = results[j];
 				var distance = element.distance.text;

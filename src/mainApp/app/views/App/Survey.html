@@ -11,6 +11,7 @@
 		addresses: [{
 			address1: '#streetAddress',
 			locality: '#city',
+			administrative_area: "#state",
 			postal_code: '#zip'
 		}]
 	});
@@ -48,7 +49,11 @@
 	  {{with $field := field "city" .}}
 	   <input type="text" id="{{$field.Name}}" name="{{$field.Name}}" class="form-control" placeholder="Enter the city">
 	   {{end}}
-	  <label for="postal_code">Postal Code</label>
+	<label for="state">State</label>
+	 {{with $field := field "state" .}}
+	<input type="text" id="{{$field.Name}}" name="{{$field.Name}}" class="form-control" placeholder="Enter State">
+	{{end}}	
+  <label for="postal_code">Postal Code</label>
 	    {{with $field := field "zip" .}}
 	  <input type="text" id="zip" name="{{$field.Name}}" class="form-control" placeholder="Enter your postal code">
 	    {{end}}
