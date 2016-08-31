@@ -3,15 +3,15 @@ function distanceMatrix() {
 //var origin = 'Greenwich, England';
 //var origin = '12 Stony Brook Rd,Arlington MA, USA';
 var origin = myStreetAddress;
-var destination = 'Boston, MA';
-
+//var destination = 'Boston, MA';
+var destination = myDestination;
 var service = new google.maps.DistanceMatrixService();
 service.getDistanceMatrix(
 {
 	origins: [origin],
 	destinations: [destination],
 	travelMode: 'DRIVING',
-	unitSystem: google.maps.UnitSystem.METRIC,
+	unitSystem: google.maps.UnitSystem.IMPERIAL,
 	avoidHighways: false,
 	avoidTolls: false,
 },function callback(response,status) {

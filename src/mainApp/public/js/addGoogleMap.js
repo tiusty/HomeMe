@@ -5,4 +5,7 @@ function initMap() {
 		zoom: 8
 	});
 	distanceMatrix();
+	var geocoder = new google.maps.Geocoder();
+	geocodeAddress(geocoder, map, myStreetAddress);
+	geocodeAddress(geocoder, map, myDestination);
 }

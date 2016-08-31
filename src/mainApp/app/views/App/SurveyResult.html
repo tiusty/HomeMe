@@ -1,5 +1,6 @@
 {{set . "title" "Unicorn"}}
 {{template "header.html" .}}
+</head>
 <link href="/public/css/GoogleMapStyle.css" rel="stylesheet">
 <link href="/public/css/dashboard.css" rel="stylesheet">
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -28,13 +29,13 @@
     </nav>
  <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
+        <div class="col-sm-3 col-md-3 sidebar">
           <ul class="nav nav-sidebar">
             <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
             <li><a href="/App/Survey">Back To Form</a></li>
           </ul>
           </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div class="col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-3 main">
           <h1 class="page-header">Dashboard</h1>
 	   <div id="map"></div>
           <h2 class="sub-header">Section title</h2>
@@ -67,9 +68,12 @@
 </div>
 <script>
 var myStreetAddress = "{{.streetAddress}}, {{.city}}, {{.state}}, {{.zip}}";
+var myDestination = "Boston, MA";
 </script>
+<script src="/public/js/geocodeAddress.js"></script>
 <script src="/public/js/googleMapsDistanceMatrix.js"></script>
 <script src="/public/js/addGoogleMap.js"></script>
+
 <script> 
 //	$(document).ready(distanceMatrix('Stockholm, Sweeden'));
 </script>
