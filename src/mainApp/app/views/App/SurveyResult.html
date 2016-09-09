@@ -1,7 +1,6 @@
 {{set . "title" "Unicorn"}}
 {{template "header.html" .}}
-</head>
-<link href="/public/css/GoogleMapStyle.css" rel="stylesheet">
+<link href="/public/Google/css/GoogleMapStyle.css" rel="stylesheet">
 <link href="/public/css/dashboard.css" rel="stylesheet">
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
@@ -70,9 +69,9 @@
 var myStreetAddress = "{{.streetAddress}}, {{.city}}, {{.state}}, {{.zip}}";
 var myDestination = "Boston, MA";
 </script>
-<script src="/public/js/geocodeAddress.js"></script>
-<script src="/public/js/googleMapsDistanceMatrix.js"></script>
-<script src="/public/js/addGoogleMap.js"></script>
+<script src="/public/Google/js/addMarkers.js"></script>
+<script src="/public/Google/js/googleMapsDistanceMatrix.js"></script>
+<script src="/public/App/js/addGoogleMap.js"></script>
 
 <script> 
 //	$(document).ready(distanceMatrix('Stockholm, Sweeden'));
