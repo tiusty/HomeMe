@@ -32,9 +32,9 @@ func (c Application) connected() *models.User {
 }
 
 func (c Application) getUser(username string) *models.User {
+	log.Println(username)
 	users, err := c.Txn.Select(models.User{}, `select * from User`) // from User where Username = ?`, username)
 	log.Println(users)
-	log.Println(err)
 	if err != nil {
 		panic(err)
 	}
@@ -46,7 +46,7 @@ func (c Application) getUser(username string) *models.User {
 
 func (c Application) Index() revel.Result {
 	if c.connected() != nil {
-		return c.Redirect(App.Index)
+		return c.Redirect(App.Survey)
 	}
 	c.Flash.Error("Please log in first")
 	return c.Render()
@@ -77,14 +77,15 @@ func (c Application) SaveUser(user models.User, verifyPassword string) revel.Res
 
 	c.Session["user"] = user.Username
 	c.Flash.Success("Welcome, " + user.Name)
-	return c.Redirect(App.Index)
+	return c.Redirect(App.Survey)
 }
 
 func (c Application) Login(username, password string, remember bool) revel.Result {
 	user := c.getUser(username)
+	log.Println(user)
 	if user != nil {
 		err := bcrypt.CompareHashAndPassword(user.HashedPassword, []byte(password))
-
+		log.Println(err)
 		if err == nil {
 			c.Session["user"] = username
 			if remember {
@@ -93,17 +94,17 @@ func (c Application) Login(username, password string, remember bool) revel.Resul
 				c.Session.SetNoExpiration()
 			}
 			c.Flash.Success("Welcome, " + username)
-			return c.Redirect(App.Index)
+			return c.Redirect(App.Survey)
 		}
 	}
 	c.Flash.Out["username"] = username
 	c.Flash.Error("Login failed")
-	return c.Redirect(App.Index)
+	return c.Redirect(Application.Index)
 }
 
 func (c Application) Logout() revel.Result {
 	for k := range c.Session {
 		delete(c.Session, k)
 	}
-	return c.Redirect(App.Index)
+	return c.Redirect(Application.Index)
 }

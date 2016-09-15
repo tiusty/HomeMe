@@ -18,6 +18,7 @@
 </script>
 <link href="/public/css/bootstrap.min.css" rel="stylesheet">
 <link href="/public/bootstrapTest/starter-template.css" rel="stylesheet">
+<body>
     <div class="container">
       <div class="header clearfix">
         <nav>
@@ -25,7 +26,11 @@
             <li role="presentation" class="active"><a href="#">Home</a></li>
             <li role="presentation"><a href="#">About</a></li>
             <li role="presentation"><a href="#">Contact</a></li>
-	    <li role="presentation"><a href="#">Sign In</a><li>
+	    {{if not .loggedIn}}
+	    	<li role="presentation"><a href="{{url "Application.Index"}}">Sign In</a></li>
+	    {{else}}
+		<li role="presentation"><a href="{{url "Application.Logout"}}">Log out</a></li>
+	    {{end}}
           </ul>
         </nav>
         <h3 class="text-muted">Unicorn</h3>

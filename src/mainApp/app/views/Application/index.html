@@ -7,11 +7,16 @@
    	<script src="https://apis.google.com/js/platform.js" async defer></script>
 <body>
 <form action="{{url "Application.Login"}}" id ="formLogin" method="POST" class="form-signin">
+	{{template "flash.html" .}}
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="username" class="sr-only">Username</label>
-	<input type="text" id="Username" class="form-control" placeholder="Username" required="" autofocus="" value="{{.flash.username}}" size="19">
+	{{with $field := field "username" .}}
+	<input type="text" id="{{$field.Name}}" class="form-control" placeholder="Username" required="" autofocus="" value="{{$field.Flash}}" name="{{$field.Name}}" size="19">
+	{{end}}
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="" size="19">
+	{{with $field := field "password" .}}
+	<input type="password" id="{{$field.Name}}" class="form-control" placeholder="Password" required="" size="19" name="{{$field.Name}}">
+	{{end}}
         <div class="checkbox">
 		<label>
             <input type="checkbox" name="remember" value="true"> Remember
@@ -19,7 +24,11 @@
         </div>
         <button class="btn btn-lg btn-primary btn-block" value="Account login" type="submit">Sign in</button>
       </form>
-<!-- Add when google sign in works
+	<p style="text-align:center">
+	<a href="{{url "Application.Register"}}">Register New User</a>
+	</p>
+      
+      <!-- Add when google sign in works
 <div class="container">
   <div class="row">
     <div class="g-signin2 col-sm-offset-4 col-sm-4" data-onsuccess="onSignIn" data-theme="dark"></div>

@@ -1,0 +1,51 @@
+{{set . "title" "Register"}}
+{{template "header.html" .}}
+<title>Register</title>
+<link href="/public/UserAuth/css/register.css" rel="stylesheet">
+<body>
+<div class="container">
+<div class="row">
+	<div class="col-md-3"></div>
+<div class="col-md-6">
+<form action="{{url "Application.SaveUser"}}" method="POST" class="form-horizontal">
+	<div class="form-group">
+	{{template "flash.html" .}}
+	<div class="col-sm-offset-3 col-sm-9">
+		<h2 style="text-align:center"  class="form-signin-heading">Please Register with us!</h2>
+	</div>
+	{{with $field := field "user.Username" . }}
+	<label for="{{$field.Name}}" class="col-sm-3 control-label">Username</label>
+	<div class="col-sm-9">
+		<input type="text" class="form-control" name="{{$field.Name}}" id="{{$field.Name}}" required=""  size="10" value="{{$field.Flash}}"> 
+	</div>
+	{{end}}
+	{{with $field := field "user.Name" .}}
+	<label for="{{$field.Name}}" class="col-sm-3 control-label">Name</label>
+	<div class="col-sm-9">
+		<input type="text" class="form-control" name="{{$field.Name}}" id="{{$field.Name}}" required=""  size="10" value="{{$field.Flash}}">
+	</div>
+	{{end}}
+	{{with $field := field "user.Password" .}}
+	<label for="{{$field.Name}}" class="col-sm-3 control-label">Password</label>
+	<div class="col-sm-9">
+		<input type="password" class="form-control" name="{{$field.Name}}" size="16" value="{{$field.Flash}}">
+	</div>
+	{{end}}
+	{{with $field := field "verifyPassword" .}}
+	<label for="{{$field.Name}}" class="col-sm-3 control-label">Verify Password</label>
+	<div class="col-sm-9" style="padding-bottom:20px">
+	        <input type="password" class="form-control" name="{{$field.Name}}" size="16" value="{{$field.Flash}}">
+	</div>
+        {{end}}
+	<div class="col-sm-offset-3 col-sm-9" style="padding-bottom:20px">
+		<button class="btn btn-primary" value="Register" type="submit">Register!</button> 
+	</div>
+	<div class="col-sm-offset-3 col-sm-9">
+		<a href="{{url "Application.Index"}}">cancel</a>
+	</div>
+	</div>
+</form>
+</div>
+</div>
+</div>
+</body>
