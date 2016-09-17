@@ -1,6 +1,6 @@
 {{set . "title" "Unicorn"}}
 {{template "header.html" .}}
-<link href="/public/css/GoogleMapStyle.css" rel="stylesheet">
+<link href="/public/Google/css/GoogleMapStyle.css" rel="stylesheet">
 <link href="/public/css/dashboard.css" rel="stylesheet">
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
@@ -28,13 +28,13 @@
     </nav>
  <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
+        <div class="col-sm-3 col-md-3 sidebar">
           <ul class="nav nav-sidebar">
             <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
             <li><a href="/App/Survey">Back To Form</a></li>
           </ul>
           </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div class="col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-3 main">
           <h1 class="page-header">Dashboard</h1>
 	   <div id="map"></div>
           <h2 class="sub-header">Section title</h2>
@@ -43,20 +43,39 @@
               <thead>
                 <tr>
                   <th>Destination Entered</th>
-                </tr>
+		   <th>Zip Code entered</th>
+		   <th>Origin</th>
+		   <th>Destination</th>
+		   <th>Time to Destination</th>
+		   <th>Distance between locations</th>
+		</tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>{{.inputDest}}</td>
+                  <td>{{.streetAddress}}</td>
+		  <td>{{.zip}}</td>
+		  <td id="distanceMatrixOrigin"></td>
+		  <td id="distanceMatrixDestination"></td>
+		  <td id="distanceMatrixTimeToDestination"></td>
+		  <td id="distanceMatrixDistanceToDestination"></td>
                 </tr>
-               </tbody>
+	       </tbody>
             </table>
           </div>
 </div>
 </div>
 </div>
-<script src="/public/js/addGoogleMap.js"></script>
-   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDocEM2aNmd47atCkIpw2zXOBShUhF3PwE &callback=initMap"></script>
+<script>
+var myStreetAddress = "{{.streetAddress}}, {{.city}}, {{.state}}, {{.zip}}";
+var myDestination = "Boston, MA";
+</script>
+<script src="/public/Google/js/addMarkers.js"></script>
+<script src="/public/Google/js/googleMapsDistanceMatrix.js"></script>
+<script src="/public/App/js/addGoogleMap.js"></script>
 
+<script> 
+//	$(document).ready(distanceMatrix('Stockholm, Sweeden'));
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDocEM2aNmd47atCkIpw2zXOBShUhF3PwE &callback=initMap"></script>
 
 {{template "footer.html" .}}
