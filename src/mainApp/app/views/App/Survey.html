@@ -19,66 +19,69 @@
 <link href="/public/css/bootstrap.min.css" rel="stylesheet">
 <link href="/public/bootstrapTest/starter-template.css" rel="stylesheet">
 <body>
-    <div class="container">
-      <div class="header clearfix">
-        <nav>
-          <ul class="nav nav-pills pull-right">
-            <li role="presentation" class="active"><a href="#">Home</a></li>
-            <li role="presentation"><a href="#">About</a></li>
-            <li role="presentation"><a href="#">Contact</a></li>
-	    {{if not .loggedIn}}
-	    	<li role="presentation"><a href="{{url "Application.Index"}}">Sign In</a></li>
-	    {{else}}
-		<li role="presentation"><a href="{{url "Application.Logout"}}">Log out</a></li>
-	    {{end}}
-          </ul>
-        </nav>
-        <h3 class="text-muted">Unicorn</h3>
-      </div>
+	<div class="container">
+		<div class="header clearfix">
+			<nav>
+				<ul class="nav nav-pills pull-right">
+					<li role="presentation" class="active"><a href="#">Home</a></li>
+					<li role="presentation"><a href="#">About</a></li>
+					<li role="presentation"><a href="#">Contact</a></li>
+					{{if not .loggedIn}}
+					<li role="presentation"><a href="{{url "Application.Index"}}">Sign In</a></li>
+					{{else}}
+					<li role="presentation"><a href="{{url "Application.Logout"}}">Log out</a></li>
+					{{end}}
+				</ul>
+			</nav>
+			<h3 class="text-muted">Unicorn</h3>
+		</div>
+		<div class="jumbotron">
+			<h1>Find your Perfect Home!!</h1>
+			<p class="lead">Complete the Survey below to find your unicorn :)</p>
+			<p><a class="btn btn-lg btn-success" href="{{url "Application.Register"}}" role="button">Sign up today</a></p>
+		</div>
+		<div class="col-sm-12">
+			<div class="col-sm-6 col-sm-offset-3">	{{template "flash.html" .}}</div>
+			<form class="form-horizontal" action="{{url "Algorithm.Index"}}" method="POST">
+				<div class="col-sm-offset-3 col-sm-6">
+					<div class="form-group">
+						<label for="street-address">Destination</label>
+						{{with $field := field "streetAddress" .}}
+						<input type="text" id="{{$field.Name}}" name="{{$field.Name}}" class="form-control" placeholder="Enter Destination address">
+						{{end}}
+						<label for="city">City</label>
+						{{with $field := field "city" .}}
+						<input type="text" id="{{$field.Name}}" name="{{$field.Name}}" class="form-control" placeholder="Enter the city">
+						{{end}}
+						<label for="state">State</label>
+						{{with $field := field "state" .}}
+						<input type="text" id="{{$field.Name}}" name="{{$field.Name}}" class="form-control" placeholder="Enter State">
+						{{end}}
+						<label for="postal_code">Postal Code</label>
+						{{with $field := field "zip" .}}
+						<input type="text" id="zip" name="{{$field.Name}}" class="form-control" placeholder="Enter your postal code">
+						{{end}}
+					</div>
+					<div class="form-group">
+						{{with $field := field "rentBuy" .}}
+							{{radio $field "rent"}} Rent
+							{{radio $field "buy"}} Buy
+						{{end}}
+					</div>
+					<div class="form-group">
+							<button type="submit" id="Submit" class="btn btn-primary">Submit Survey</button>
+					</div>
+				</div>
+			</form>
+		</div>
 
-      <div class="jumbotron">
-        <h1>Find your Perfect Home!!</h1>
-        <p class="lead">Complete the Survey below to find your unicorn :)</p>
-        <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>
-      </div>
-      <div class="col-sm-12"> 
-       <div class="col-sm-6 col-sm-offset-3">	{{template "flash.html" .}}</div>
-      <form class="form-horizontal" action="/App/SurveyResult" method="POST">
-	<div class="form-group">
-	  <div class="col-sm-offset-3 col-sm-6">
-	  <label for="street-address">Destination</label>
-	    {{with $field := field "streetAddress" .}}
-	  <input type="text" id="{{$field.Name}}" name="{{$field.Name}}" class="form-control" placeholder="Enter Destination address">
-	    {{end}}
-           <label for="city">City</label>
-	  {{with $field := field "city" .}}
-	   <input type="text" id="{{$field.Name}}" name="{{$field.Name}}" class="form-control" placeholder="Enter the city">
-	   {{end}}
-	<label for="state">State</label>
-	 {{with $field := field "state" .}}
-	<input type="text" id="{{$field.Name}}" name="{{$field.Name}}" class="form-control" placeholder="Enter State">
-	{{end}}	
-  <label for="postal_code">Postal Code</label>
-	    {{with $field := field "zip" .}}
-	  <input type="text" id="zip" name="{{$field.Name}}" class="form-control" placeholder="Enter your postal code">
-	    {{end}}
-	  </div>
-	</div>
-	<div class="form-group">
-	  <div class="col-sm-offset-3 col-sm-10">
-	     <button type="submit" id="Submit" class="btn btn-primary">Submit Survey</button>
-	</div>
-	</div>
-      </form>
-      </div>
-
-	<div class="sm-col-12" style="text-align: center">
-      <footer class="footer">
-        <p>&copy; 2016 Company, Inc.</p>
-      </footer>
-	</div>
-    </div> <!-- /container -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="/public/js/bootstrap.min.js"></script>
+		<div class="sm-col-12" style="text-align: center">
+		<footer class="footer">
+			<p>&copy; 2016 Company, Inc.</p>
+		</footer>
+		</div>
+	</div> <!-- /container -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="/public/js/bootstrap.min.js"></script>
 </body>
 {{template "footer.html" .}}

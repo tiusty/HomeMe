@@ -1,0 +1,283 @@
+{{template "header.html" . }}
+<title>Renting Survey</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/public/Algorithm/rentingSurvey/css/rentingSurvey.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+<body>
+<div class="container">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Unicorn</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{{url "App.Survey"}}">Survey</a></li>
+                    <li><a href="#">Settings</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Help</a></li>
+                </ul>
+                <form class="navbar-form navbar-right">
+                    <input type="text" class="form-control" placeholder="Search...">
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div class="jumbotron" style="text-align:center">
+        <h2>Complete the Survey to find your Perfect Home!</h2>
+        <p class="lead">The more information you provide, increases the chance for a better home!</p>
+    </div>
+    <form class="form-horizontal main" action="{{url "App.SurveyResult"}}"  method="POST">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <div class="form-group">
+                    <label for="street-address">Destination</label>
+                    <input type="text" id="streetAddress" name="streetAddress" class="form-control" value="{{.streetAddressInitial}}">
+
+                    <label for="city">City</label>
+                    <input type="text" id="city" name="city" class="form-control" value="{{.cityInitial}}">
+
+                    <label for="state">State</label>
+                    <input type="text" id="state" name="state" class="form-control" value="{{.stateInitial}}">
+
+                    <label for="postal_code">Postal Code</label>
+                    <input type="text" id="zip" name="zip" class="form-control" value="{{.zipInitial}}">
+
+                </div>
+                <div class="form-group">
+                    <label for="amountMaxCommute">Max Commute Time:</label>
+                    <input type="text" id="amountMaxCommute" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                    <div id="maxCommute"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="typeHome">Select list:</label>
+                    <select multiple class="form-control" id="typeHome">
+                        <option>House</option>
+                        <option>Apartment</option>
+                        <option>Condo</option>
+                        <option>Town House</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="numRooms">Number of Rooms:</label>
+                    <select multiple class="form-control" id="numRooms">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="numBathroom">Number of Bathrooms:</label>
+                    <select multiple class="form-control" id="numBathroom">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="amountCost">Cost:</label>
+                    <input type="text" id="amountCost" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                    <div id="cost"></div>
+                </div>
+                <div class="form-group">
+                    <label for="amountSize">Size:</label>
+                    <input type="text" id="amountSize" size="40" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                    <div id="size"></div>
+                </div>
+                <div class="form-group">
+                    <h4>Interior Amenities</h4>
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-1">
+                            <div>
+                                <label for="airConditioning">Air Conditioning:</label>
+                                <select class="form-control" id="airConditioning">
+                                    <option>0</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    <option>10</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="washerDryer">Washer Dryer (In Home):</label>
+                                <select class="form-control" id="washerDryer">
+                                    <option>0</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    <option>10</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="dishWasher">Dish Washer:</label>
+                                <select class="form-control" id="dishWasher">
+                                    <option>0</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    <option>10</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="bath">Bath:</label>
+                                <select class="form-control" id="bath">
+                                    <option>0</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    <option>10</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h4>Building/Exterior Amenities</h4>
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-1">
+                            <div>
+                                <label for="parkingSpot">Parking Spot:</label>
+                                <select class="form-control" id="parkingSpot">
+                                    <option>0</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    <option>10</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="washerDryerBuilding">Washer Dryer (In Building):</label>
+                                <select class="form-control" id="washerDryerBuilding">
+                                    <option>0</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    <option>10</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="elevator">Elevator :</label>
+                                <select class="form-control" id="elevator">
+                                    <option>0</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    <option>10</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="handicapAccessible">Handicap Accessible :</label>
+                                <select class="form-control" id="handicapAccessible">
+                                    <option>0</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    <option>10</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="poolHotTub">Pool/Hot Tub :</label>
+                                <select class="form-control" id="poolHotTub">
+                                    <option>0</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    <option>10</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="fitnessCenter">Pool/Hot Tub :</label>
+                                <select class="form-control" id="fitnessCenter">
+                                    <option>0</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    <option>10</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" id="Submit" class="btn btn-primary">Submit Survey</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+<script src="/public/Algorithm/rentingSurvey/js/slideMaxCommute.js"></script>
+<script src="/public/Algorithm/rentingSurvey/js/slideCost.js"></script>
+<script src="/public/Algorithm/rentingSurvey/js/slideSize.js"></script>
