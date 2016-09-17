@@ -7,12 +7,12 @@ type App struct {
 	Application
 }
 
-func (c App) Index() revel.Result {
+/*func (c App) Index() revel.Result {
 	greeting := "Alex Agudelo"
 	return c.Render(greeting)
-}
+}*/
 
-func (c App) Hello(myName string) revel.Result {
+/*func (c App) Hello(myName string) revel.Result {
 	c.Validation.Required(myName).Message("Your name is required!")
 	c.Validation.MinSize(myName, 3).Message("Your name is not long enough!")
 
@@ -23,7 +23,7 @@ func (c App) Hello(myName string) revel.Result {
 	}
 
 	return c.Render(myName)
-}
+}*/
 
 func (c App) Survey() revel.Result {
 	loggedIn := false

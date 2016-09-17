@@ -65,7 +65,7 @@ func (c Application) SaveUser(user models.User, verifyPassword string) revel.Res
 	if c.Validation.HasErrors() {
 		c.Validation.Keep()
 		c.FlashParams()
-		return c.Redirect(App.Index)
+		return c.Redirect(App.Survey)
 	}
 
 	user.HashedPassword, _ = bcrypt.GenerateFromPassword(
