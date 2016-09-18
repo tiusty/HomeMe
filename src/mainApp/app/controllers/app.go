@@ -34,17 +34,20 @@ func (c App) Survey() revel.Result {
 }
 
 func (c App) SurveyResult() revel.Result {
-	var streetAddress, zip, city, state, amountMaxCommute, amountCost, amountSize  string
+	var streetAddress, zip, city, state string
 	var typeHome []string
 	var numRooms, numBathroom []int
-	var airConditioning, washerDryerHome, dishWasher, bath, parkingSpot, washerDryerBuilding, elevator int
+	var airConditioning, washerDryerHome, dishWasher, bath, parkingSpot, washerDryerBuilding, elevator, costReturnLow, costReturnHigh, amountSizeLow, amountSizeHigh, amountMaxCommuteLow, amountMaxCommuteHigh int
 	c.Params.Bind(&streetAddress, "streetAddress")
 	c.Params.Bind(&zip, "zip")
 	c.Params.Bind(&city, "city")
 	c.Params.Bind(&state, "state")
-	c.Params.Bind(&amountMaxCommute, "amountMaxCommute")
-	c.Params.Bind(&amountCost, "amountCost")
-	c.Params.Bind(&amountSize, "amountSize")
+	c.Params.Bind(&amountMaxCommuteLow, "amountMaxCommuteLow")
+	c.Params.Bind(&amountMaxCommuteHigh, "amountMaxCommuteHigh")
+	c.Params.Bind(&costReturnLow, "costReturnLow")
+	c.Params.Bind(&costReturnHigh, "costReturnHigh")
+	c.Params.Bind(&amountSizeLow, "amountSizeLow")
+	c.Params.Bind(&amountSizeHigh, "amountSizeHigh")
 	c.Params.Bind(&typeHome, "typeHome")
 	c.Params.Bind(&numRooms, "numRooms")
 	c.Params.Bind(&numBathroom, "numBathroom")
@@ -55,10 +58,12 @@ func (c App) SurveyResult() revel.Result {
 	c.Params.Bind(&washerDryerBuilding, "washerDryerBuilding")
 	c.Params.Bind(&elevator, "elevator")
 	c.Params.Bind(&airConditioning, "airConditioning")
-	log.Println(elevator)
-	log.Println(parkingSpot)
-	log.Println(airConditioning)
-	log.Println(dishWasher)
+	log.Println(costReturnLow)
+	log.Println(costReturnHigh)
+    log.Println(amountSizeHigh)
+    log.Println(amountSizeLow)
+    log.Println(amountMaxCommuteHigh)
+    log.Println(amountMaxCommuteLow)
 
 
 	c.Validation.Required(streetAddress).Message("You need a destination!")
@@ -68,5 +73,5 @@ func (c App) SurveyResult() revel.Result {
 		c.FlashParams()
 		return c.Redirect(App.Survey)
 	}
-	return c.Render(streetAddress, zip, state, city, amountMaxCommute, typeHome, numRooms, numBathroom, amountCost, amountSize, airConditioning, parkingSpot)
+	return c.Render(streetAddress, zip, state, city, typeHome, numRooms, numBathroom, airConditioning, parkingSpot, amountSizeHigh, costReturnLow, amountMaxCommuteHigh)
 }

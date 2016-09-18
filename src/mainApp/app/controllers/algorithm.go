@@ -28,6 +28,6 @@ func (c Algorithm) Index(streetAddress, zip, state, city, rentBuy string) revel.
 
 }
 
-func (c Algorithm) RentingSurvey() revel.Result {
+/*func (c Algorithm) RentingSurvey() revel.Result {
     return c.Render()
-}
+}*/

@@ -36,45 +36,45 @@
             </ul>
           </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-3 main">
-        <h1 class="page-header">Dashboard</h1>
-        <div id="map"></div>
-        <h2 class="sub-header">Section title</h2>
-        <div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Destination Entered</th>
-                        <th>Zip Code entered</th>
-                        <th>Origin</th>
-                        <th>Destination</th>
-                        <th>Time to Destination</th>
-                        <th>Distance between locations</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{{.streetAddress}}</td>
-                        <td>{{.zip}}</td>
-                        <td id="distanceMatrixOrigin"></td>
-                        <td id="distanceMatrixDestination"></td>
-                        <td id="distanceMatrixTimeToDestination"></td>
-                        <td id="distanceMatrixDistanceToDestination"></td>
-                    </tr>
-                    <tr>
-                        <td>{{.amountMaxCommute}}</td>
-                        <td>{{.typeHome}}</td>
-                        <td>{{.numRooms}}</td>
-                        <td>{{.numBathroom}}</td>
-                        <td>{{.amountCost}}</td>
-                        <td>{{.amountSize}}</td>
-                    </tr>
-                    <tr>
-                        <td>{{.airConditioning}}</td>
-                        <td>{{.parkingSpot}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+            <h1 class="page-header">Dashboard</h1>
+            <div id="map"></div>
+            <h2 class="sub-header">Section title</h2>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Destination Entered</th>
+                            <th>Zip Code entered</th>
+                            <th>Origin</th>
+                            <th>Destination</th>
+                            <th>Time to Destination</th>
+                            <th>Distance between locations</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{.streetAddress}}</td>
+                            <td>{{.zip}}</td>
+                            <td id="distanceMatrixOrigin"></td>
+                            <td id="distanceMatrixDestination"></td>
+                            <td id="distanceMatrixTimeToDestination"></td>
+                            <td id="distanceMatrixDistanceToDestination"></td>
+                        </tr>
+                        <tr>
+                            <td>{{.amountMaxCommuteHigh}}</td>
+                            <td>{{.typeHome}}</td>
+                            <td>{{.numRooms}}</td>
+                            <td>{{.numBathroom}}</td>
+                            <td>{{.costReturnLow}}</td>
+                            <td>{{.amountSizeHigh}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{.airConditioning}}</td>
+                            <td>{{.parkingSpot}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

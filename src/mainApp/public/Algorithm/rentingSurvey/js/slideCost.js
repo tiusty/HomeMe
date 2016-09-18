@@ -6,8 +6,12 @@ $( function() {
         values: [ 700, 1200 ],
         slide: function( event, ui ) {
             $( "#amountCost" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+            $( "#costReturnLow").val(ui.values[0]);
+            $( "#costReturnHigh").val(ui.values[1]);
         }
     });
     $( "#amountCost" ).val( "$" + $( "#cost" ).slider( "values", 0 ) +
         " - $" + $( "#cost" ).slider( "values", 1 ) );
+    $( "#costReturnLow").val( $("#cost").slider("values", 0));
+    $( "#costReturnHigh").val( $("#cost").slider("values", 1));
 } );

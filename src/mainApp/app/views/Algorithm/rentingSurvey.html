@@ -48,6 +48,8 @@
                 </div>
                 <div class="form-group">
                     <label for="amountMaxCommute">Max Commute Time:</label>
+                    <input type="hidden" name="amountMaxCommuteLow" id="amountMaxCommuteLow">
+                    <input type="hidden" name="amountMaxCommuteHigh" id="amountMaxCommuteHigh">
                     <input type="text" name="amountMaxCommute" id="amountMaxCommute" readonly style="border:0; color:#f6931f; font-weight:bold;">
                     <div id="maxCommute"></div>
                 </div>
@@ -82,11 +84,15 @@
                 </div>
                 <div class="form-group">
                     <label for="amountCost">Cost:</label>
+                    <input type="hidden" name="costReturnLow" id="costReturnLow">
+                    <input type="hidden" name="costReturnHigh" id="costReturnHigh">
                     <input type="text" id="amountCost" name="amountCost" readonly style="border:0; color:#f6931f; font-weight:bold;">
                     <div id="cost"></div>
                 </div>
                 <div class="form-group">
                     <label for="amountSize">Size:</label>
+                    <input type="hidden" name="amountSizeLow" id="amountSizeLow">
+                    <input type="hidden" name="amountSizeHigh" id="amountSizeHigh">
                     <input type="text" id="amountSize" name="amountSize" size="40" readonly style="border:0; color:#f6931f; font-weight:bold;">
                     <div id="size"></div>
                 </div>
