@@ -1,4 +1,4 @@
-{{set . "title" "Unicorn"}}
+{{set . "title" "Survey Results"}}
 {{template "header.html" .}}
 <link href="/public/Google/css/GoogleMapStyle.css" rel="stylesheet">
 <link href="/public/css/dashboard.css" rel="stylesheet">
@@ -12,11 +12,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Project name</a>
+                <a class="navbar-brand" href="#">Unicorn</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="{{url "App.Survey"}}">Survey</a></li>
                     <li><a href="#">Settings</a></li>
                     <li><a href="#">Profile</a></li>
                     <li><a href="#">Help</a></li>
@@ -59,6 +59,18 @@
                         <td id="distanceMatrixDestination"></td>
                         <td id="distanceMatrixTimeToDestination"></td>
                         <td id="distanceMatrixDistanceToDestination"></td>
+                    </tr>
+                    <tr>
+                        <td>{{.amountMaxCommute}}</td>
+                        <td>{{.typeHome}}</td>
+                        <td>{{.numRooms}}</td>
+                        <td>{{.numBathroom}}</td>
+                        <td>{{.amountCost}}</td>
+                        <td>{{.amountSize}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{.airConditioning}}</td>
+                        <td>{{.parkingSpot}}</td>
                     </tr>
                 </tbody>
             </table>

@@ -1,5 +1,5 @@
+{{set . "title" "Renting Survey"}}
 {{template "header.html" . }}
-<title>Renting Survey</title>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/public/Algorithm/rentingSurvey/css/rentingSurvey.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -25,42 +25,36 @@
                     <li><a href="#">Profile</a></li>
                     <li><a href="#">Help</a></li>
                 </ul>
-                <form class="navbar-form navbar-right">
-                    <input type="text" class="form-control" placeholder="Search...">
-                </form>
             </div>
         </div>
     </nav>
     <div class="jumbotron" style="text-align:center">
         <h2>Complete the Survey to find your Perfect Home!</h2>
         <p class="lead">The more information you provide, increases the chance for a better home!</p>
+        <p>Values default to zero, so if you don't care about it don't touch</p>
     </div>
     <form class="form-horizontal main" action="{{url "App.SurveyResult"}}"  method="POST">
         <div class="row">
             <div class="col-sm-6 col-sm-offset-3">
                 <div class="form-group">
-                    <label for="street-address">Destination</label>
+                    <label for="streetAddress">Destination</label>
                     <input type="text" id="streetAddress" name="streetAddress" class="form-control" value="{{.streetAddressInitial}}">
-
                     <label for="city">City</label>
                     <input type="text" id="city" name="city" class="form-control" value="{{.cityInitial}}">
-
                     <label for="state">State</label>
                     <input type="text" id="state" name="state" class="form-control" value="{{.stateInitial}}">
-
-                    <label for="postal_code">Postal Code</label>
+                    <label for="zip">Postal Code</label>
                     <input type="text" id="zip" name="zip" class="form-control" value="{{.zipInitial}}">
-
                 </div>
                 <div class="form-group">
                     <label for="amountMaxCommute">Max Commute Time:</label>
-                    <input type="text" id="amountMaxCommute" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                    <input type="text" name="amountMaxCommute" id="amountMaxCommute" readonly style="border:0; color:#f6931f; font-weight:bold;">
                     <div id="maxCommute"></div>
                 </div>
 
                 <div class="form-group">
                     <label for="typeHome">Select list:</label>
-                    <select multiple class="form-control" id="typeHome">
+                    <select multiple class="form-control" name="typeHome[]" id="typeHome">
                         <option>House</option>
                         <option>Apartment</option>
                         <option>Condo</option>
@@ -69,7 +63,7 @@
                 </div>
                 <div class="form-group">
                     <label for="numRooms">Number of Rooms:</label>
-                    <select multiple class="form-control" id="numRooms">
+                    <select multiple class="form-control" name="numRooms[]" id="numRooms">
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
@@ -79,7 +73,7 @@
                 </div>
                 <div class="form-group">
                     <label for="numBathroom">Number of Bathrooms:</label>
-                    <select multiple class="form-control" id="numBathroom">
+                    <select multiple class="form-control" name="numBathroom[]" id="numBathroom">
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
@@ -88,12 +82,12 @@
                 </div>
                 <div class="form-group">
                     <label for="amountCost">Cost:</label>
-                    <input type="text" id="amountCost" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                    <input type="text" id="amountCost" name="amountCost" readonly style="border:0; color:#f6931f; font-weight:bold;">
                     <div id="cost"></div>
                 </div>
                 <div class="form-group">
                     <label for="amountSize">Size:</label>
-                    <input type="text" id="amountSize" size="40" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                    <input type="text" id="amountSize" name="amountSize" size="40" readonly style="border:0; color:#f6931f; font-weight:bold;">
                     <div id="size"></div>
                 </div>
                 <div class="form-group">
@@ -102,7 +96,7 @@
                         <div class="col-sm-6 col-sm-offset-1">
                             <div>
                                 <label for="airConditioning">Air Conditioning:</label>
-                                <select class="form-control" id="airConditioning">
+                                <select class="form-control" name="airConditioning" id="airConditioning">
                                     <option>0</option>
                                     <option>1</option>
                                     <option>2</option>
@@ -117,8 +111,8 @@
                                 </select>
                             </div>
                             <div>
-                                <label for="washerDryer">Washer Dryer (In Home):</label>
-                                <select class="form-control" id="washerDryer">
+                                <label for="washerDryerHome">Washer Dryer (In Home):</label>
+                                <select class="form-control" name="washerDryerHome" id="washerDryerHome">
                                     <option>0</option>
                                     <option>1</option>
                                     <option>2</option>
@@ -134,7 +128,7 @@
                             </div>
                             <div>
                                 <label for="dishWasher">Dish Washer:</label>
-                                <select class="form-control" id="dishWasher">
+                                <select class="form-control" name="dishWasher" id="dishWasher">
                                     <option>0</option>
                                     <option>1</option>
                                     <option>2</option>
@@ -150,7 +144,7 @@
                             </div>
                             <div>
                                 <label for="bath">Bath:</label>
-                                <select class="form-control" id="bath">
+                                <select class="form-control" name="bath" id="bath">
                                     <option>0</option>
                                     <option>1</option>
                                     <option>2</option>
@@ -173,7 +167,7 @@
                         <div class="col-sm-6 col-sm-offset-1">
                             <div>
                                 <label for="parkingSpot">Parking Spot:</label>
-                                <select class="form-control" id="parkingSpot">
+                                <select class="form-control" name="parkingSpot" id="parkingSpot">
                                     <option>0</option>
                                     <option>1</option>
                                     <option>2</option>
@@ -189,7 +183,7 @@
                             </div>
                             <div>
                                 <label for="washerDryerBuilding">Washer Dryer (In Building):</label>
-                                <select class="form-control" id="washerDryerBuilding">
+                                <select class="form-control" name="washerDryerBuilding" id="washerDryerBuilding">
                                     <option>0</option>
                                     <option>1</option>
                                     <option>2</option>
@@ -205,7 +199,7 @@
                             </div>
                             <div>
                                 <label for="elevator">Elevator :</label>
-                                <select class="form-control" id="elevator">
+                                <select class="form-control" name="elevator" id="elevator">
                                     <option>0</option>
                                     <option>1</option>
                                     <option>2</option>
