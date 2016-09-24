@@ -41,6 +41,7 @@ func InitDB() {
 	setColumnSizes(t, map[string]int{
 		"Username": 20,
 		"Name":     100,
+		"Email":    40,
 	})
 
 	//send sql logging to the logger

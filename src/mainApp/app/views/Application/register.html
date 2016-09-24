@@ -16,25 +16,37 @@
 	{{with $field := field "user.Username" . }}
 	<label for="{{$field.Name}}" class="col-sm-3 control-label">Username</label>
 	<div class="col-sm-9">
-		<input type="text" class="form-control" name="{{$field.Name}}" id="{{$field.Name}}" required=""  size="10" value="{{$field.Flash}}"> 
+		<input type="text" class="form-control" name="{{$field.Name}}" required=""  size="10" value="{{$field.Flash}}">
 	</div>
 	{{end}}
 	{{with $field := field "user.Name" .}}
 	<label for="{{$field.Name}}" class="col-sm-3 control-label">Name</label>
 	<div class="col-sm-9">
-		<input type="text" class="form-control" name="{{$field.Name}}" id="{{$field.Name}}" required=""  size="10" value="{{$field.Flash}}">
+		<input type="text" class="form-control" name="{{$field.Name}}" required=""  size="10" value="{{$field.Flash}}">
+	</div>
+	{{end}}
+	{{with $field := field "user.Email" .}}
+	<label for="{{$field.Name}}" class="col-sm-3 control-label">Email</label>
+	<div class="col-sm-9">
+		<input type="email" class="form-control" name="{{$field.Name}}" required=""  size="10" value="{{$field.Flash}}">
+	</div>
+	{{end}}
+	{{with $field := field "verifyEmail" .}}
+	<label for="{{$field.Name}}" class="col-sm-3 control-label">Verify Email</label>
+	<div class="col-sm-9">
+		<input type="email" class="form-control" name="{{$field.Name}}" required=""  size="10" value="{{$field.Flash}}">
 	</div>
 	{{end}}
 	{{with $field := field "user.Password" .}}
 	<label for="{{$field.Name}}" class="col-sm-3 control-label">Password</label>
 	<div class="col-sm-9">
-		<input type="password" class="form-control" name="{{$field.Name}}" size="16" value="{{$field.Flash}}">
+		<input type="password" class="form-control" name="{{$field.Name}}" size="16">
 	</div>
 	{{end}}
 	{{with $field := field "verifyPassword" .}}
 	<label for="{{$field.Name}}" class="col-sm-3 control-label">Verify Password</label>
 	<div class="col-sm-9" style="padding-bottom:20px">
-	        <input type="password" class="form-control" name="{{$field.Name}}" size="16" value="{{$field.Flash}}">
+	        <input type="password" class="form-control" name="{{$field.Name}}" size="16">
 	</div>
         {{end}}
 	<div class="col-sm-offset-3 col-sm-9" style="padding-bottom:20px">

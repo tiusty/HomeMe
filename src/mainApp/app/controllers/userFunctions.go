@@ -54,16 +54,33 @@ func (c Application) Register() revel.Result {
 	return c.Render()
 }
 
-func (c Application) SaveUser(user models.User, verifyPassword string) revel.Result {
+func (c Application) SaveUser(user models.User, verifyPassword, verifyEmail string) revel.Result {
 	c.Validation.Required(verifyPassword)
 	c.Validation.Required(verifyPassword == user.Password).
 		Message("Password does not match")
+	c.Validation.Required(verifyEmail)
+	c.Validation.Required(verifyEmail == user.Email).
+		Message("Emails does not match")
 	user.Validate(c.Validation)
+
+	//This checks to see if the Username already exists, and if it does then it throws an error
+	//And does not let the User create the account
+	allUsers, errUsers := c.Txn.Select(models.User{}, `select Username from User`)
+	if errUsers != nil {
+		panic(errUsers)
+	}
+	for a := range allUsers {
+		log.Println(allUsers[a])
+		if user.Username == allUsers[a].(*models.User).Username {
+			c.Validation.Error("Username already exists")
+		}
+	}
+
 
 	if c.Validation.HasErrors() {
 		c.Validation.Keep()
 		c.FlashParams()
-		return c.Redirect(App.Survey)
+		return c.Redirect(Application.Register)
 	}
 
 	user.HashedPassword, _ = bcrypt.GenerateFromPassword(
@@ -105,4 +122,8 @@ func (c Application) Logout() revel.Result {
 		delete(c.Session, k)
 	}
 	return c.Redirect(Application.Index)
+}
+
+func (c Application) Profile() revel.Result {
+	return c.Render()
 }
